@@ -1,4 +1,6 @@
 
+using Skillfolio.Api.setupConfigurations;
+
 namespace Skillfolio.Api;
 
 public class Program
@@ -6,9 +8,10 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
+        builder.ConfigureServices();
         
-        app.MapGet("/", () => "Hello World!");
+        var app = builder.Build();
+        app.ConfigureMiddleWare();
 
         app.Run();
     }
