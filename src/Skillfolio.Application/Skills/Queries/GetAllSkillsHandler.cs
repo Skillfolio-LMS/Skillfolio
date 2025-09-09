@@ -3,7 +3,7 @@ using Skillfolio.Domain.Skills;
 using Skillfolio.Domain.Skills.Query;
 using Skillfolio.Infrastructure.Interfaces;
 
-namespace Skillfolio.Application.Skills;
+namespace Skillfolio.Application.Skills.Queries;
 
 public class GetAllSkillsHandler(IRepository<Skill> skillRepo) : IRequestHandler<GetAllSkills, List<Skill>>
 {

@@ -1,5 +1,4 @@
-using System.Reflection;
-using Skillfolio.Application.Skills;
+using Skillfolio.Application.Skills.Queries;
 using Skillfolio.Domain.Skills.Query;
 using Skillfolio.Infrastructure;
 
@@ -19,7 +18,11 @@ public static class ServiceConfiguration
         builder.Services.AddRepositories();
         
         // MediatR congiguration
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly, typeof(GetAllSkillsHandler).Assembly, typeof(GetAllSkills).Assembly));
+        builder.Services.AddMediatR(
+            cfg => 
+                cfg.RegisterServicesFromAssemblies(
+                    typeof(Program).Assembly, typeof(GetAllSkillsHandler).Assembly, typeof(GetAllSkills).Assembly)
+                );
 
         builder.Services.AddDb(Environment.GetEnvironmentVariable("dbString")!);
 
