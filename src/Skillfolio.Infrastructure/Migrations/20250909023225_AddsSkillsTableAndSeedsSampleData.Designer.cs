@@ -11,8 +11,8 @@ using Skillfolio.Infrastructure.Database;
 namespace Skillfolio.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250908035927_CreateSkillsTableAndSeedSampleData")]
-    partial class CreateSkillsTableAndSeedSampleData
+    [Migration("20250909023225_AddsSkillsTableAndSeedsSampleData")]
+    partial class AddsSkillsTableAndSeedsSampleData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
