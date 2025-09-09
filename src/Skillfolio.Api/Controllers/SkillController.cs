@@ -11,7 +11,6 @@ public class SkillController(IMediator mediator) : ControllerBase
     [HttpGet("skills")]
     public async Task<IActionResult> GetSkills(CancellationToken cancellationToken)
     {
-        var skills = await mediator.Send(new GetAllSkills(), cancellationToken);
-        return Ok(skills);
+        return Ok(await mediator.Send(new GetAllSkills(), cancellationToken));
     }
 }

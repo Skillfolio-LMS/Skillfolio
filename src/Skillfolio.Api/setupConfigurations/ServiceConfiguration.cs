@@ -4,7 +4,6 @@ using Skillfolio.Infrastructure;
 
 namespace Skillfolio.Api.setupConfigurations;
 
-
 public static class ServiceConfiguration
 {
     public static void ConfigureServices(this WebApplicationBuilder builder)

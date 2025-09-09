@@ -9,7 +9,6 @@ public class SkillRepository(AppDbContext context) : IRepository<Skill>
 {
     public async Task<List<Skill>> GetAllAsync(CancellationToken cancellationToken)
     {
-        var skills =  await context.Skills.ToListAsync(cancellationToken);
-        return skills;
+        return await context.Skills.ToListAsync(cancellationToken);
     }
 }

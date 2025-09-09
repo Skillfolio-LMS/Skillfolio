@@ -9,7 +9,6 @@ public class GetAllSkillsHandler(IRepository<Skill> skillRepo) : IRequestHandler
 {
     public async Task<List<Skill>> Handle(GetAllSkills request, CancellationToken cancellationToken)
     {
-        var skills = await skillRepo.GetAllAsync(cancellationToken);
-        return skills;
+        return await skillRepo.GetAllAsync(cancellationToken);
     }
 }
