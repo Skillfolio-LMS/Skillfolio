@@ -20,7 +20,10 @@ public static class MiddlewareConfiguration
         
         // Database migration and seeding
         app.ConfigureDb();
-        app.SeedSkillsData();
+        if (app.Environment.EnvironmentName != "IntegrationTests")
+        {
+            app.SeedSkillsData();
+        }
     }
 
     private static void UseExceptionMiddleWare(this WebApplication app)

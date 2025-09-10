@@ -23,7 +23,10 @@ public static class ServiceConfiguration
                     typeof(Program).Assembly, typeof(GetAllSkillsHandler).Assembly, typeof(GetAllSkills).Assembly)
                 );
 
-        builder.Services.AddDb(Environment.GetEnvironmentVariable("dbString")!);
+        if (builder.Environment.EnvironmentName != "IntegrationTests")
+        {
+            builder.Services.AddDb(Environment.GetEnvironmentVariable("dbString")!);
+        }
 
     }
 }
