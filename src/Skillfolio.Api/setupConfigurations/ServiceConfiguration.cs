@@ -1,4 +1,8 @@
+using FluentValidation;
+using MediatR;
+using Skillfolio.Application.Common.Behaviors;
 using Skillfolio.Application.Skills.Queries;
+using Skillfolio.Domain.LearnedSkills.Commands;
 using Skillfolio.Domain.Skills.Query;
 using Skillfolio.Infrastructure;
 
@@ -26,10 +30,16 @@ public static class ServiceConfiguration
     
     private static void RegisterMediatR(this IServiceCollection services)
     {
+        services.AddValidatorsFromAssembly(typeof(CreateLearnedSkillCommandValidator).Assembly);
+        
         services.AddMediatR(
-            cfg => 
+            cfg =>
+            {
                 cfg.RegisterServicesFromAssemblies(
-                    typeof(Program).Assembly, typeof(GetAllSkillsHandler).Assembly, typeof(GetAllSkills).Assembly)
+                    typeof(Program).Assembly, typeof(GetAllSkillsHandler).Assembly, typeof(GetAllSkills).Assembly);
+                
+                cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            }
         );
     }
 }
