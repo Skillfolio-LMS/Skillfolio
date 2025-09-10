@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Skillfolio.Domain.Skills;
 using Skillfolio.Infrastructure.Database;
 
 namespace Skillfolio.Api.setupConfigurations;
@@ -18,12 +19,7 @@ public static class MiddlewareConfiguration
         app.UseSwagger();
         app.UseSwaggerUI();
         
-        // Database migration and seeding
         app.ConfigureDb();
-        if (app.Environment.EnvironmentName != "IntegrationTests")
-        {
-            app.SeedSkillsData();
-        }
     }
 
     private static void UseExceptionMiddleWare(this WebApplication app)
@@ -43,13 +39,23 @@ public static class MiddlewareConfiguration
 
     private static void ConfigureDb(this WebApplication app)
     {
-        if (app.Environment.EnvironmentName != "IntegrationTests")
-        {
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dbContext.Database.Migrate();
-            }
-        }
+        if (app.Environment.EnvironmentName == "IntegrationTests") return;
+        
+        using var scope = app.Services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        dbContext.Database.Migrate();
+        
+        if (dbContext.Skills.Any()) return;
+        
+        dbContext.Skills.AddRange(new Skill("C#", "Programming"), 
+            new Skill("Java", "Programming"), 
+            new Skill("PostgreSQL", "Database"), 
+            new Skill("MsSQL", "Database"), 
+            new Skill("Docker", "DevOps/Tools"), 
+            new Skill("Kubernetes", "DevOps/Tools"), 
+            new Skill("React", "Frameworks"), 
+            new Skill("EF Core", "Frameworks"));
+
+        dbContext.SaveChanges();
     }
 }
