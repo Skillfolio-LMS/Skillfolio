@@ -11,7 +11,7 @@ public class LearnedSkill
     public int SkillId { get; private set; }
     public int ProficiencyLevel { get; private set;  }
 
-    public LearnedSkill(CreateLearedSkillCommand command)
+    public LearnedSkill(CreateLearnedSkillCommand command)
     {
         UserId = command.UserId;
         SkillId = command.SkillId;

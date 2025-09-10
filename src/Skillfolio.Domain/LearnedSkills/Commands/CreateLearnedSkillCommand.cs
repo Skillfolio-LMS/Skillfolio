@@ -2,7 +2,7 @@ using MediatR;
 
 namespace Skillfolio.Domain.LearnedSkills.Commands;
 
-public class CreateLearedSkillCommand : IRequest<CreateLearnedSkillCommandResponse>
+public class CreateLearnedSkillCommand : IRequest<CreateLearnedSkillCommandResponse>
 {
     public int UserId { get; set; }
     public int SkillId { get; set; }

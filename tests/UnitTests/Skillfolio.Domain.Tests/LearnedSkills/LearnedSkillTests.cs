@@ -11,7 +11,7 @@ public class LearnedSkillTests
     public void CreateLearnedSkill_ShouldInitializeProperties()
     {
         // Arrange
-        var command = new CreateLearedSkillCommand
+        var command = new CreateLearnedSkillCommand
         {
             UserId = 1,
             SkillId = 2,

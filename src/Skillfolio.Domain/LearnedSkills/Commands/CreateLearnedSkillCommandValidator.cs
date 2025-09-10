@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Skillfolio.Domain.LearnedSkills.Commands;
 
-public class CreateLearnedSkillCommandValidator : AbstractValidator<CreateLearedSkillCommand>
+public class CreateLearnedSkillCommandValidator : AbstractValidator<CreateLearnedSkillCommand>
 {
     public CreateLearnedSkillCommandValidator()
     {
