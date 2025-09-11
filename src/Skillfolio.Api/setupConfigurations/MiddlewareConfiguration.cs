@@ -1,6 +1,4 @@
-
 using Microsoft.EntityFrameworkCore;
-using Skillfolio.Application.Exceptions;
 using Skillfolio.Domain.Skills;
 using Skillfolio.Infrastructure.Database;
 
@@ -10,35 +8,15 @@ public static class MiddlewareConfiguration
 {
     public static void ConfigureMiddleWare(this WebApplication app)
     {
-        app.UseHttpsRedirection();
-        app.UseRouting();
         app.UseCors();
-        app.UseAuthentication();
-        app.UseAuthorization();
-        app.UseExceptionMiddleWare();
+        app.UseMiddleware<ErrorHandlerMiddleWare>();
         app.MapControllers();
         app.UseSwagger();
         app.UseSwaggerUI();
         
         app.ConfigureDb();
     }
-
-    private static void UseExceptionMiddleWare(this WebApplication app)
-    {
-        app.Use(async (context, next) =>
-        {
-            try
-            {
-                await next(context);
-            }
-            catch (CustomException exception)
-            {
-                context.Response.StatusCode = exception.StatusCode;
-                await context.Response.WriteAsync(exception.Message);
-            }
-        });
-    }
-
+    
     private static void ConfigureDb(this WebApplication app)
     {
         if (app.Environment.EnvironmentName == "IntegrationTests") return;
