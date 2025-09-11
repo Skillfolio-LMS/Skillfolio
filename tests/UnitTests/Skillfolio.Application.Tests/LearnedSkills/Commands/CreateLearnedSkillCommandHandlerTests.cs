@@ -1,4 +1,5 @@
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Moq;
 using Moq.AutoMock;
 using Skillfolio.Application.Exceptions;
@@ -40,8 +41,11 @@ public class CreateLearnedSkillCommandHandlerTests
         var response = await _handler.Handle(command, CancellationToken.None);
 
         // Assert
-        response.Should().NotBeNull();
-        learnedSkillRepoMock.Verify(x => x.AddAsync(It.Is<LearnedSkill>(ls => ls.UserId == command.UserId && ls.SkillId == command.SkillId && ls.ProficiencyLevel == command.ProficiencyLevel), It.IsAny<CancellationToken>()), Times.Once);
+        using (new AssertionScope())
+        {
+            response.Should().NotBeNull();
+            learnedSkillRepoMock.Verify(x => x.AddAsync(It.Is<LearnedSkill>(ls => ls.UserId == command.UserId && ls.SkillId == command.SkillId && ls.ProficiencyLevel == command.ProficiencyLevel), It.IsAny<CancellationToken>()), Times.Once);
+        }
     }
 
     [Fact]
@@ -57,7 +61,10 @@ public class CreateLearnedSkillCommandHandlerTests
         Func<Task> act = async () => await _handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var exception = await Assert.ThrowsAsync<ObjectNotFoundException>(() => _handler.Handle(command, CancellationToken.None));
-        exception.StatusCode.Should().Be(404);
+        using (new AssertionScope())
+        {
+            var exception = await Assert.ThrowsAsync<ObjectNotFoundException>(() => _handler.Handle(command, CancellationToken.None));
+            exception.StatusCode.Should().Be(404);
+        }
     }
 }

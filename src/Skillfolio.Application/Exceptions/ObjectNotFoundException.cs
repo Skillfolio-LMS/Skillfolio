@@ -1,6 +1,6 @@
 namespace Skillfolio.Application.Exceptions;
 
-public class ObjectNotFoundException : ApplicationException
+public class ObjectNotFoundException : CustomException
 {
     public ObjectNotFoundException(string message)
     {

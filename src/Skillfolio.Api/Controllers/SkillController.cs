@@ -14,11 +14,4 @@ public class SkillController(IMediator mediator) : ControllerBase
     {
         return Ok(await mediator.Send(new GetAllSkills(), cancellationToken));
     }
-    
-    [HttpPost("Learned-skill")]
-    public async Task<IActionResult> LearnedSkill([FromBody] CreateLearnedSkillCommand command, CancellationToken cancellationToken)
-     {
-         return Created(nameof(LearnedSkill), await mediator.Send(command, cancellationToken));
-     }
-    
 }

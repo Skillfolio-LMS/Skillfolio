@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Skillfolio.Application.Exceptions;
 using Skillfolio.Domain.Skills;
 using Skillfolio.Infrastructure.Database;
 
@@ -30,9 +31,10 @@ public static class MiddlewareConfiguration
             {
                 await next(context);
             }
-            catch (Exception ex)
+            catch (CustomException exception)
             {
-                await context.Response.WriteAsync(ex.Message);
+                context.Response.StatusCode = exception.StatusCode;
+                await context.Response.WriteAsync(exception.Message);
             }
         });
     }
