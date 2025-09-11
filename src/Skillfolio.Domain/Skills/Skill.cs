@@ -1,6 +1,8 @@
+using Skillfolio.Domain.LearnedSkills;
+
 namespace Skillfolio.Domain.Skills;
 
-public class Skill(string skillName, string category)
+public class Skill
 {
 
     #region MyRegion
@@ -10,6 +12,14 @@ public class Skill(string skillName, string category)
     
     // Primary Key
     public int Id { get; private set; }
-    public string SkillName { get; private set; } = skillName;
-    public string Category { get; private set; } = category;
+    public string SkillName { get; private set; }
+    public string Category { get; private set; }
+    
+    public List<LearnedSkill> LearnedSkills { get; private set; }
+
+    public Skill(string skillName, string category)
+    {
+        SkillName = skillName;
+        Category = category;
+    }
 }

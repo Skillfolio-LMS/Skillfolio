@@ -4,10 +4,12 @@ using Skillfolio.Domain.Skills;
 
 namespace Skillfolio.Infrastructure.Database.Configurations;
 
-public class UserConfiguration : IEntityTypeConfiguration<Skill>
+public class SkillConfiguration : IEntityTypeConfiguration<Skill>
 {
     public void Configure(EntityTypeBuilder<Skill> builder)
     {
+        builder.ToTable("skills");
+        
         builder.HasKey(sk => sk.Id);
         
         builder.Property(x => x.SkillName).HasMaxLength(Skill.NameMaxLength).IsRequired();
