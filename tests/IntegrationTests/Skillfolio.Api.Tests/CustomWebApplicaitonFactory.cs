@@ -17,10 +17,12 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             // Remove existing AppDbContext registration
             var descriptor = services.SingleOrDefault(
                 d => d.ServiceType == typeof(DbContextOptions<AppDbContext>));
+            
             if (descriptor != null)
             {
                 services.Remove(descriptor);
             }
+            
             // Add in-memory database for AppDbContext
             services.AddDbContext<AppDbContext>(options =>
             {
@@ -33,11 +35,9 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
     public void ResetDatabase()
     {
-        using (var scope = Services.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            db.Database.EnsureDeleted();
-            db.Database.EnsureCreated();
-        }
+        using var scope = Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        db.Database.EnsureDeleted();
+        db.Database.EnsureCreated();
     }
 }

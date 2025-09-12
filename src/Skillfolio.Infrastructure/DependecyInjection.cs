@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Skillfolio.Domain.LearnedSkills;
 using Skillfolio.Domain.Skills;
 using Skillfolio.Infrastructure.Database;
 using Skillfolio.Infrastructure.Interfaces;
@@ -25,5 +26,6 @@ public static class DependencyInjection
     public static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IRepository<Skill>, SkillRepository>();
+        services.AddScoped<IRepository<LearnedSkill>, LearnedSkillRepository>();
     }
 }
