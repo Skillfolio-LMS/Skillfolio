@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Skillfolio.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddsSkillsAndLearnedSkillsTables : Migration
+    public partial class AddsSkillsAndLearnedSkillsTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

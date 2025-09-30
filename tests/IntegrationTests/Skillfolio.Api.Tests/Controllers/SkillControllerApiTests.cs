@@ -34,7 +34,7 @@ public class SkillControllerApiTests : IClassFixture<CustomWebApplicationFactory
         }
 
         // Act
-        var response = await _client.GetAsync("api/skills");
+        var response = await _client.GetAsync("/skills");
 
         // Assert
         using (new AssertionScope())

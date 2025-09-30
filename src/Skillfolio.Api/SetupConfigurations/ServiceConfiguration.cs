@@ -1,5 +1,6 @@
 using FluentValidation;
 using MediatR;
+using Microsoft.OpenApi.Models;
 using Skillfolio.Application.Common.Behaviors;
 using Skillfolio.Application.Skills.Queries;
 using Skillfolio.Domain.LearnedSkills.Commands;
@@ -7,7 +8,6 @@ using Skillfolio.Domain.Skills.Query;
 using Skillfolio.Infrastructure;
 
 namespace Skillfolio.Api.setupConfigurations;
-
 public static class ServiceConfiguration
 {
     public static void ConfigureServices(this WebApplicationBuilder builder)
@@ -16,7 +16,7 @@ public static class ServiceConfiguration
         builder.Services.AddEndpointsApiExplorer();
         
         builder.Services.AddSwaggerGen();
-
+        
         builder.Services.AddCors();
         builder.Services.AddRepositories();
         

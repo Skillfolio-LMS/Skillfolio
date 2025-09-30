@@ -15,8 +15,6 @@ public class Skill
     public string SkillName { get; private set; }
     public string Category { get; private set; }
     
-    public List<LearnedSkill> LearnedSkills { get; private set; }
-
     public Skill(string skillName, string category)
     {
         SkillName = skillName;

@@ -43,7 +43,7 @@ public class LearnedSkillsControllerApiTests : IClassFixture<CustomWebApplicatio
         };
 
         // Act
-        var response = await _client.PostAsJsonAsync("api/skills/learned-skill", command);
+        var response = await _client.PostAsJsonAsync("/skills/learned-skill", command);
 
         // Assert
         using (new AssertionScope())
@@ -75,7 +75,7 @@ public class LearnedSkillsControllerApiTests : IClassFixture<CustomWebApplicatio
         };
 
         // Act
-        var response = await _client.PostAsJsonAsync("api/skills/learned-skill", command);
+        var response = await _client.PostAsJsonAsync("/skills/learned-skill", command);
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);

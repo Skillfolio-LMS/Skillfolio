@@ -10,12 +10,12 @@ public class LearnedSkillConfiguration : IEntityTypeConfiguration<LearnedSkill>
     {
         builder.ToTable("learnedskills");
 
-        builder.HasOne(x => x.Skill)
-            .WithMany(s => s.LearnedSkills)
-            .HasForeignKey(x => x.SkillId)
-            .OnDelete(DeleteBehavior.Cascade);
-        
         builder.HasKey(x => x.Id);
+        
+        builder.HasOne(ls => ls.Skill)
+            .WithMany()              
+            .HasForeignKey(ls => ls.SkillId)
+            .OnDelete(DeleteBehavior.Cascade); 
         
         builder.Property(x => x.ProficiencyLevel).IsRequired();
     }

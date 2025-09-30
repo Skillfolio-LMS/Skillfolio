@@ -8,7 +8,7 @@ public class Program
     public static void Main(string[] args)
     {
         // Load .env from repository root
-        DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] { "../../.env" }));
+        DotEnv.Load(options: new DotEnvOptions(envFilePaths:["../../.env"]));
         
         var builder = WebApplication.CreateBuilder(args);
         builder.ConfigureServices();

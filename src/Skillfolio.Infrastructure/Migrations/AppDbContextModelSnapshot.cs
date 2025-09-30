@@ -21,7 +21,7 @@ namespace Skillfolio.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Skillfolio.Domain.Skills.Entities.LearnedSkills.LearnedSkill", b =>
+            modelBuilder.Entity("Skillfolio.Domain.LearnedSkills.LearnedSkill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,20 +68,15 @@ namespace Skillfolio.Infrastructure.Migrations
                     b.ToTable("skills", (string)null);
                 });
 
-            modelBuilder.Entity("Skillfolio.Domain.Skills.Entities.LearnedSkills.LearnedSkill", b =>
+            modelBuilder.Entity("Skillfolio.Domain.LearnedSkills.LearnedSkill", b =>
                 {
                     b.HasOne("Skillfolio.Domain.Skills.Skill", "Skill")
-                        .WithMany("LearnedSkills")
+                        .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Skill");
-                });
-
-            modelBuilder.Entity("Skillfolio.Domain.Skills.Skill", b =>
-                {
-                    b.Navigation("LearnedSkills");
                 });
 #pragma warning restore 612, 618
         }

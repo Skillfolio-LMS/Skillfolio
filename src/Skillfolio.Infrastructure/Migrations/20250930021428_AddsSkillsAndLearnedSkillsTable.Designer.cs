@@ -11,8 +11,8 @@ using Skillfolio.Infrastructure.Database;
 namespace Skillfolio.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250911053231_AddsSkillsAndLearnedSkillsTables")]
-    partial class AddsSkillsAndLearnedSkillsTables
+    [Migration("20250930021428_AddsSkillsAndLearnedSkillsTable")]
+    partial class AddsSkillsAndLearnedSkillsTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Skillfolio.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Skillfolio.Domain.Skills.Entities.LearnedSkills.LearnedSkill", b =>
+            modelBuilder.Entity("Skillfolio.Domain.LearnedSkills.LearnedSkill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,20 +71,15 @@ namespace Skillfolio.Infrastructure.Migrations
                     b.ToTable("skills", (string)null);
                 });
 
-            modelBuilder.Entity("Skillfolio.Domain.Skills.Entities.LearnedSkills.LearnedSkill", b =>
+            modelBuilder.Entity("Skillfolio.Domain.LearnedSkills.LearnedSkill", b =>
                 {
                     b.HasOne("Skillfolio.Domain.Skills.Skill", "Skill")
-                        .WithMany("LearnedSkills")
+                        .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Skill");
-                });
-
-            modelBuilder.Entity("Skillfolio.Domain.Skills.Skill", b =>
-                {
-                    b.Navigation("LearnedSkills");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,6 @@ using Skillfolio.Domain.Skills;
 using Skillfolio.Infrastructure.Database;
 
 namespace Skillfolio.Api.setupConfigurations;
-
 public static class MiddlewareConfiguration
 {
     public static void ConfigureMiddleWare(this WebApplication app)

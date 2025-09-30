@@ -1,12 +1,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Skillfolio.Domain.LearnedSkills.Commands;
 using Skillfolio.Domain.Skills.Query;
 
 namespace Skillfolio.Api.Controllers;
 
 [ApiController]
-[Route("api/skills")]
+[Route("skills")]
 public class SkillController(IMediator mediator) : ControllerBase
 {
     [HttpGet]

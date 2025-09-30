@@ -1,5 +1,3 @@
-
-
 using Microsoft.EntityFrameworkCore;
 using Skillfolio.Domain.LearnedSkills;
 using Skillfolio.Domain.Skills;
